@@ -7,10 +7,15 @@
       <div class="flex justify-between items-center">
         <h1 class="title">ChatChatChat</h1>
       </div>
-      <div class="flex justify-between items-center">
-        <!-- <span class="bg-green-300 rounded-full w-3 h-3 mr-2"></span> -->
-        <span class="usernames" @click="directMessage(user.email)">{{ user.displayName }}</span>
-        <PlusCircle @click.native="showAccoutModal" />
+      <!-- <div class="mt-5 flex justify-between items-center"> -->
+        <!-- <div class="channelname">アカウント名</div> -->
+        <!-- <Accountname @click.native="showAccoutModal" /> -->
+        <!-- <button class="channelbutton" @click="showAccoutModal">アカウント名変更</button> -->
+      <!-- </div> -->
+      <button class="channelbutton" @click="showAccoutModal">アカウント名変更</button>
+      <div class="flex  items-center">
+        <span class="bg-green-300 rounded-full w-3 h-3 mr-2"></span>
+        <span class="name" @click="directMessage(user.email)">{{ user.displayName }}</span>
       </div>
         <div
         class="z-10 fixed top-0 left-0 h-full w-full flex items-center justify-center"
@@ -58,7 +63,7 @@
               <h2 class="text-3xl font-black leading-loose">チャンネルを追加する</h2>
               <span @click="closeChannelModal" class="text-4xl">×</span>
             </div>
-            <p>チャンネルはユーザーとのコニュニケーションを取る場所です。自分でチャンネルを作ってみよう！(例: 漫画)</p>
+            <p>チャンネルはユーザーとのコニュニケーションを取る場所です。自分でチャンネルを作ってみよう！(例:〇〇チャンネル)</p>
             <div class="mt-8 font-semibold">名前</div>
            <div class="my-3">
               <input
@@ -121,7 +126,8 @@
               <div class="mt-2 mb-4 flex" v-for="message in messages" :key="message.key">
                 <Avator :user="message.user" />
                 <div class="ml-2">
-                  <div class="font-bold">{{ message.user }}</div>
+                  <!-- <div class="font-bold">{{ message.user }}</div> -->
+                  <div class="font-bold">{{ message.displayName }}</div>
                   <div>{{ message.content }}</div>
                 </div>
               </div>
@@ -162,13 +168,39 @@
   color: white;
 }
 
+.channelbutton{
+  width: 115px;
+  height: 30px; 
+  line-height: 28px;
+
+  border-width: 2px;
+  border-style: solid;
+  border-color: #fff;
+
+  /* background-color: #6927FF; */
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  padding-left: 3px;
+  margin: 5px 0px 15px 0px;
+}
+
+.name{
+  font-size: 15px;
+  font-weight: bold;
+  opacity: 0.7;
+  position: relative;
+  color: white;
+}
+
 .usernames{
   font-size: 15px;
   font-weight: bold;
   opacity: 0.7;
   position: relative;
   color: white;
-  margin-top: px;
 }
 .usernames::after {
 	position: absolute;
@@ -220,13 +252,16 @@ import 'firebase/auth';
 import 'firebase/database';
 import PlusCircle from "../components/icons/PlusCircle";
 import Star from "../components/icons/Star";
+// import Accountname from "../components/icons/Accountname";
 import Avator from "../components/Avator";
+
 
 export default {
   components: {
     PlusCircle,
     Star,
-    Avator
+    Avator,
+    // Accountname
   },
 
 
@@ -267,6 +302,7 @@ export default {
         key: key_id,
         content: this.message,
         user: this.user.email,
+        displayName:this.user.displayName,
         createdAt: firebase.database.ServerValue.TIMESTAMP
       });
 
@@ -429,7 +465,6 @@ export default {
           .ref("messages")
           .child(this.channel_id)
           .off();
-
         },
 
 }
