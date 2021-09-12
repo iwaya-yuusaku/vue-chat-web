@@ -220,19 +220,28 @@ header{
   }
   .titlename{
   padding-top: 22px;
-  font-size: 40px;
+  font-size: 34px;
   }
   .button{
-  padding: 24px 10px;
-  font-size: 18px;
+  padding:0px;
+  font-size: 10px;
+  width: 25%;
+  height: 90%;
+  font-weight: bold;
   border-radius: 70px;
   }
+  .screen{
+  height: 100%;
+  }
   .main{
-    margin-top: 35px;
+    margin-top: 1px;
+    height: 565px;
   }
   .signin{
-  width: 70%;
-  margin-top: 0px;
+  width: 100%;
+  }
+  .signin-box{
+  margin-top: 40px;
   }
   .text-box{
   width: 90%;

@@ -96,7 +96,6 @@
         <header class="head">
           <div class="header-box">
           <div class="header-text">
-            <!-- <Star /> -->
             <div class="header-name">{{ channel_name }}</div>
           </div>
           <div class="header-button">
@@ -115,11 +114,10 @@
             <p>メッセージ一覧</p>
               <div class="main-message-box">
                 <div class="main-message-name" v-for="message in messages" :key="message.key">
-                <Avator :user="message.user" />
-                <!-- <div class="ml-2"> -->
+                <Avator :user="message.user" class="avator"/>
                   <div class="main-message-text">
                   <div class="main-name">{{ message.displayName }}</div>
-                  <div>{{ message.content }}</div>
+                  <div class="message-talk">{{ message.content }}</div>
                 </div>
               </div>
             </div>
@@ -480,6 +478,10 @@ p{
   display: flex;
   margin-left: 30px;
 }
+.avator{
+  width: 40px;
+  height: 40px;
+}
 .main-message-text{
   margin-left: 10px;
 }
@@ -575,12 +577,16 @@ p{
   }
   .channel-margin{
   margin-top: 16px;
-  margin-left: 5px;
+  margin-left: 0%;
   font-size: 14px;
+  width: 82%;
+  display: flex;
+  justify-content: flex-start;
   }
   .channelname-2{
   font-size: 12px;
   margin-top: 16px;
+  margin: 0%;
   }
   .usernames{
   font-size: 13px;
@@ -594,21 +600,38 @@ p{
   opacity: 0.7;
   }
   .head{
-  height: 70px;
+  height: 90px;
   padding: 6px;
   }
+  .header-box{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+  }
+  .header-text{
+  width: 76%;
+  }
   .header-name{
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
-  margin-left: 30px;
+  margin-left: 0px;
+  margin-top: 20px;
+  }
+  .header-button{
+  display: block;
+  width: 25%;
+  height: 60%;
+  margin-top: 10px;
   }
   .button-out{
-  height: 40px;
+  width: 60%;
+  height: 90%;
   background:	#98FB98;
-  padding: 8px 22px;
+  padding: 0px 0px;
   color: #fff;
   box-shadow: 0 5px black;
-  font-size: 15px;
+  font-size: 10px;
   font-weight: bold;
   border-radius:  30px;
   }
@@ -616,14 +639,32 @@ p{
   font-size: 16px;
   }
   .main-name{
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  width: 90%;
+  }
+  .message-talk{
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
   }
   .message-text-input{
   height: 50px;
   padding-top: 10px;
-  font-size: 18px;
+  font-size: 12px;
   }
+  .main-message-text{
+  margin-left: 10px;
+  width: 90%;
+  }
+  .main-message-name{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  margin-left: 10px;
+}
   .send{
   width: 120px;
   height: 40px;
