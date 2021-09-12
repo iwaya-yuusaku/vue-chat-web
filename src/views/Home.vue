@@ -2,79 +2,72 @@
 <!--              -->
 <!--   sideber   -->
 <!--              -->
-  <div class="flex h-screen">
-    <div class="w-1/5 bg-blue-600 text-white pt-3 px-4 border-r-4 border-gray-300">
-      <div class="flex justify-between items-center">
+    <div class="home-screen">
+      <div class="home-sideber">
+        <div class="home-sideber-title">
         <h1 class="title">ChatChatChat</h1>
       </div>
-      <!-- <div class="mt-5 flex justify-between items-center"> -->
-        <!-- <div class="channelname">アカウント名</div> -->
-        <!-- <Accountname @click.native="showAccoutModal" /> -->
-        <!-- <button class="channelbutton" @click="showAccoutModal">アカウント名変更</button> -->
-      <!-- </div> -->
       <button class="channelbutton" @click="showAccoutModal">アカウント名変更</button>
-      <div class="flex  items-center">
-        <span class="bg-green-300 rounded-full w-3 h-3 mr-2"></span>
+      <div class="sideber-username">
+        <span class="check"></span>
         <span class="name" @click="directMessage(user.email)">{{ user.displayName }}</span>
       </div>
         <div
-        class="z-10 fixed top-0 left-0 h-full w-full flex items-center justify-center"
+        class="name-screen"
         style="background-color:rgba(0,0,0,0.5)"
         v-show="accoutModal"
         @click="closeAccoutModal"
         >
-        <div class="z-20 bg-white text-gray-900 w-1/3 rounded-md" v-on:click.stop>
-          <div class="flex flex-col p-6">
-            <div class="flex justify-between items-center">
-              <h2 class="text-3xl font-black leading-loose">アカウント名変更</h2>
-              <span @click="closeAccoutModal" class="text-4xl">×</span>
+        <div class="name-box" v-on:click.stop>
+            <div class="name-box-padding">
+              <div class="name-box-change">
+              <h2 class="name-box-title">アカウント名変更</h2>
+              <span @click="closeAccoutModal" class="name-box-cancel">×</span>
             </div>
-            <div class="mt-8 font-semibold">名前</div>
-           <div class="my-3">
+            <div class="name-box-name">名前</div>
+             <div class="name-box-box">
               <input
                 type="text"
-                class="w-full rounded border-gray-900 border-solid border p-3"
+                class="name-box-input"
                 v-model="accout"
               />
-            </div>
-            <div class="flex justify-end">
+             </div>
+              <div class="name-box-click">
               <button
-                class="px-8 py-2 rounded bg-green-900 font-bold text-white"
+                class="name-box-button"
                 @click="createUser"
               >OK!</button>
-            </div>
+              </div>
           </div>
         </div>
       </div>
-
-      <div class="mt-5 flex justify-between items-center">
-        <div class="channelname">ちゃんねる</div>
-        <PlusCircle @click.native="showChannelModal" />
-      </div>
-      <div
-        class="z-10 fixed top-0 left-0 h-full w-full flex items-center justify-center"
+        <div class="channel-bar">
+          <div class="channelname">ちゃんねる</div>
+          <PlusCircle @click.native="showChannelModal" />
+        </div>
+        <div
+        class="channel-check"
         style="background-color:rgba(0,0,0,0.5)"
         v-show="channelModal"
         @click="closeChannelModal"
         >
-        <div class="z-20 bg-white text-gray-900 w-1/3 rounded-md" v-on:click.stop>
-          <div class="flex flex-col p-6">
-            <div class="flex justify-between items-center">
-              <h2 class="text-3xl font-black leading-loose">チャンネルを追加する</h2>
-              <span @click="closeChannelModal" class="text-4xl">×</span>
-            </div>
+        <div class="channel-box" v-on:click.stop>
+            <div class="channel-box-padding">
+              <div class="channel-box-text">
+                <h2 class="channel-box-title">ちゃんねる作成</h2>
+                <span @click="closeChannelModal" class="channel-box-cancel">×</span>
+              </div>
             <p>チャンネルはユーザーとのコニュニケーションを取る場所です。自分でチャンネルを作ってみよう！(例:〇〇チャンネル)</p>
-            <div class="mt-8 font-semibold">名前</div>
-           <div class="my-3">
+            <div class="channel-box-box">
               <input
                 type="text"
-                class="w-full rounded border-gray-900 border-solid border p-3"
+                class="channel-box-input"
                 v-model="channel"
               />
             </div>
-            <div class="flex justify-end">
+            <div class="channel-box-button">
               <button
-                class="px-8 py-2 rounded bg-green-900 font-bold text-white"
+                class="channel-chack-box"
                 @click="addChannel"
               >作成</button>
             </div>
@@ -85,31 +78,29 @@
           class="group"
           v-for="channel in channels"
           :key="channel.id">
-            <span class="bg-green-300 rounded-full w-3 h-3 mr-2 my-3"></span>
-            <span class="my-2" @click="channelMessage(channel)">{{ channel.channel_name }}</span>
+            <span class="check-2"></span>
+            <span class="channel-margin" @click="channelMessage(channel)">{{ channel.channel_name }}</span>
       </div>
-      <div class="mt-5 flex justify-between items-center">
-        <div class="channelname">ダイレクトメッセージ</div>
+        <div class="direct">
+        <div class="channelname-2">ダイレクトメッセージ</div>
       </div>
-      <div class="mt-4 flex items-center" v-for="user in users" :key="user.user_id">
-        <span class="bg-green-300 rounded-full w-3 h-3 mr-2"></span>
+        <div class="direct-user" v-for="user in users" :key="user.user_id">
+        <span class="check-3"></span>
         <span class="usernames" @click="directMessage(user)">{{ user.displayName }}</span>
       </div>
     </div>
-
-
-    <div class="flex flex-col flex-grow bg-gray-100">
+      <div class="masseage-screen">
       <!--            -->
       <!--   header   -->
       <!--            -->
-      <header class="border-b-2 border-gray-300">
-        <div class="flex justify-between m-3">
-          <div class="flex">
-            <Star />
-            <div class="font-bold text-lg text-3xl ml-2">{{ channel_name }}</div>
+        <header class="head">
+          <div class="header-box">
+          <div class="header-text">
+            <!-- <Star /> -->
+            <div class="header-name">{{ channel_name }}</div>
           </div>
-          <div class="flex items-center">
-            <button class="button" @click="signOut">サインアウト</button>
+          <div class="header-button">
+            <button class="button-out" @click="signOut">サインアウト</button>
           </div>
         </div>
       </header>
@@ -118,30 +109,30 @@
       <!--          -->
       <!--   main   -->
       <!--          -->
-      <main class="overflow-y-scroll flex-grow">
-        <div class="flex flex-col ml-6 h-full">
-          <div class="flex-grow overflow-y-scroll">
+        <main class="main-screen">
+          <div class="main-message">
+            <div class="main-message-box">
             <p>メッセージ一覧</p>
-            <div class="flex-grow overflow-y-scroll">
-              <div class="mt-2 mb-4 flex" v-for="message in messages" :key="message.key">
+              <div class="main-message-box">
+                <div class="main-message-name" v-for="message in messages" :key="message.key">
                 <Avator :user="message.user" />
-                <div class="ml-2">
-                  <!-- <div class="font-bold">{{ message.user }}</div> -->
-                  <div class="font-bold">{{ message.displayName }}</div>
+                <!-- <div class="ml-2"> -->
+                  <div class="main-message-text">
+                  <div class="main-name">{{ message.displayName }}</div>
                   <div>{{ message.content }}</div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="border border-gray-900 rounded mb-4">
+            <div class="message-text-box">
             <textarea
-              class="w-full pt-4 pl-8 outline-none"
+              class="message-text-input"
               :placeholder="placeholder"
               v-model="message"
             ></textarea>
-            <div class="bg-gray-100 p-2">
+              <div class="message-text-send">
               <button
-                class="bg-green-500 text-sm text-white font-bold py-2 px-12 rounded"
+                class="send"
                 @click="sendMessage"
               >送信</button>
             </div>
@@ -153,6 +144,21 @@
 </template>
 
 <style>
+.home-screen{
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+.home-sideber{
+  width: 270px;
+  padding: 10px;
+  background-color: #3366FF;
+  color: #fff;
+}
+.home-sideber-title{
+  display: flex;
+  justify-content: space-between;
+}
 .title{
   font-size: 30px;
   font-weight: bold;
@@ -161,23 +167,117 @@
   margin-bottom: 8px;
   color: white;
 }
-
+.sideber-username{
+  display: flex;
+  text-align: center;
+}
+.check{
+  background-color:#98FB98;
+  border-radius: 20px;
+  width: 13px;
+  height: 13px;
+  margin: 4px;
+}
+.name{
+  font-size: 15px;
+  font-weight: bold;
+  opacity: 0.7;
+  position: relative;
+  color: white;
+}
+.name-screen{
+  z-index: 10px;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.name-box{
+  background-color: #fff;
+  z-index: 10px;
+  color: #000;
+  width: 500px;
+  height: 300px;
+  border-radius: 20px;
+  margin-top: 200px;
+}
+.name-box-padding{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.name-box-change{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.name-box-title{
+  font-size: 30px;
+  color: #000;
+  line-height: 10px;
+  font-weight: bold;
+  margin-left: 100px;
+}
+.name-box-cancel{
+  font-size: 30px;
+  font-weight: bold;
+}
+.name-box-name{
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+  margin-top: 30px;
+}
+.name-box-box{
+  margin-bottom: 30px;
+  width: 460px;
+}
+.name-box-input{
+  width: 100%;
+  height: 50px;
+  border: #000;
+  border-radius: 20px;
+  border-style: solid;
+  padding: 10px;
+}
+.name-box-click{
+  display: flex;
+  justify-content: space-around;
+}
+.name-box-button{
+  font-size: 20px;
+  color: #fff;
+  background-color: #33CC66;
+  padding: 10px 50px;
+  border-radius: 20px;
+}
+.channel-bar{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin: 20px 0 0 0px;
+}
 .channelname{
   font-size: 20px;
   font-weight: bold;
   color: white;
 }
-
+.channelname-2{
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
 .channelbutton{
   width: 115px;
   height: 30px; 
   line-height: 28px;
-
   border-width: 2px;
   border-style: solid;
   border-color: #fff;
-
-  /* background-color: #6927FF; */
   border-radius: 8px;
   color: #fff;
   font-size: 13px;
@@ -186,15 +286,227 @@
   padding-left: 3px;
   margin: 5px 0px 15px 0px;
 }
-
-.name{
-  font-size: 15px;
+.channel-check{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+.channel-box{
+  background-color: #fff;
+  z-index: 10px;
+  color: #000;
+  width: 500px;
+  height: 370px;
+  border-radius: 20px;
+  margin-top: 0px;
+}
+.channel-box-padding{
+  flex-direction: column;
+  display: flex;
+  padding: 20px;
+}
+.channel-box-text{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.channel-box-title{
+  font-size: 30px;
+  color: #000;
   font-weight: bold;
+  margin-left: 120px;
+}
+.channel-box-cancel{
+  font-size: 30px;
+  color: #000;
+  font-weight: bold;
+}
+p{
+  font-size: 20px;
+  color: #000;
+  line-height: 35px;
+}
+.channel-box-box{
+  width: 430px;
+  height: 40px;
+  margin: 20px;
+}
+.channel-box-input{
+  width: 100%;
+  height: 50px;
+  border: #000;
+  border-radius: 20px;
+  border-style: solid;
+  padding: 10px;
+  color: #000;
+}
+.channel-box-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.channel-chack-box{
+  width: 130px;
+  height: 50px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #33CC66;
+  color:#fff;
+}
+.group{
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
   opacity: 0.7;
   position: relative;
-  color: white;
 }
-
+.group::after {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: #FFCC00;
+  transition: all 0.3s ease 0s;
+}
+.group:hover {
+  cursor: pointer;
+}
+.group:hover::after {
+  width: 100%;
+}
+.check-2{
+  background-color:#98FB98;
+  border-radius: 20px;
+  width: 13px;
+  height: 13px;
+  margin: 4px;
+  margin-top: 20px;
+}
+.channel-margin{
+  margin-top: 15px;
+  margin-left: 5px;
+}
+.direct{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+.direct-user{
+  display: flex;
+  text-align: center;
+  margin-top: 16px;
+}
+.check-3{
+  background-color:#98FB98;
+  border-radius: 20px;
+  width: 13px;
+  height: 13px;
+  margin: 4px;
+  margin-top: 6px;
+  margin-right: 13px;
+  opacity: 0.7;
+}
+.masseage-screen{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #EEFFFF;
+}
+.head{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  border-bottom-width: 4px;
+  border-bottom-color: #3366FF;
+}
+.header-box{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+.header-text{
+  display: flex;
+  justify-content: space-between;
+}
+.header-name{
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.header-button{
+  display: flex;
+}
+.button-out{
+  height: 60px;
+  background:	#98FB98;
+  padding: 14px 22px;
+  color: #fff;
+  box-shadow: 0 5px black;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius:20px;
+}
+.main-screen{
+  overflow-y: scroll;
+  flex-grow: 1;
+}
+.main-message{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.main-message-box{
+  flex-flow: 1;
+  overflow-y: scroll;
+  height: 100%;
+}
+.main-message-name{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  margin-left: 30px;
+}
+.main-message-text{
+  margin-left: 10px;
+}
+.main-name{
+  font-size: 20px;
+  font-weight: bold;
+}
+.message-text-box{
+  margin-bottom: 20px;
+}
+.message-text-input{
+  width: 95%;
+  padding-top: 20px;
+  outline: thick double #3366FF;
+  font-size: 20px;
+}
+.message-text-send{
+  padding: 6px;
+}
+.send{
+  width: 120px;
+  height: 50px;
+  background-color: #98FB98;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
 .usernames{
   font-size: 15px;
   font-weight: bold;
@@ -219,29 +531,109 @@
 	width: 100%;
 }
 
-.group{
+/*                       */
+/*       レスポンシブ      */
+/*                      */
+@media (max-width: 560px) {
+  .home-sideber{
+  width: 130px;
+  padding: 5px;
+  }
+  .title{
+  font-size: 15px;
+  margin: 15px 0;
+  }
+  .channelbutton{
+  width: 100px;
+  border-width: 2px;
+  border-radius: 15px;
+  font-size: 11px;
+  padding-left: 4px;
+  }
+  .check{
+  width: 12px;
+  height: 12px;
+  }
+ .name{
+  font-size: 14px;
+  }
+  .channel-bar{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin: 30px 0 0 0px;
+  }
+  .channelname{
+  font-size: 15px;
+  margin-top: 2px;
+  margin-left: 3px;
+  margin-bottom: 0px;
+  }
+  .check-2{
+  width: 12px;
+  height: 12px;
+  }
+  .channel-margin{
+  margin-top: 16px;
+  margin-left: 5px;
+  font-size: 14px;
+  }
+  .channelname-2{
+  font-size: 12px;
+  margin-top: 16px;
+  }
+  .usernames{
+  font-size: 13px;
+  }
+  .check-3{
+  width: 12px;
+  height: 12px;
+  margin: 4px;
+  margin-top: 1px;
+  margin-right: 10px;
+  opacity: 0.7;
+  }
+  .head{
+  height: 70px;
+  padding: 6px;
+  }
+  .header-name{
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 30px;
+  }
+  .button-out{
+  height: 40px;
+  background:	#98FB98;
+  padding: 8px 22px;
+  color: #fff;
+  box-shadow: 0 5px black;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius:  30px;
+  }
+  p{
+  font-size: 16px;
+  }
+  .main-name{
+  font-size: 15px;
+  font-weight: bold;
+  }
+  .message-text-input{
+  height: 50px;
+  padding-top: 10px;
+  font-size: 18px;
+  }
+  .send{
+  width: 120px;
+  height: 40px;
+  background-color: #98FB98;
+  border-radius: 20px;
   font-size: 18px;
   font-weight: bold;
-  display: flex;
-  opacity: 0.7;
-  position: relative;
+  }
 }
-.group::after {
-	position: absolute;
-	content: '';
-	bottom: 0;
-	left: 0;
-	width: 0;
-	height: 3px;
-	background: #FFCC00;
-	transition: all 0.3s ease 0s;
-}
-.group:hover {
-	cursor: pointer;
-}
-.group:hover::after {
-	width: 100%;
-}
+
 </style>
 
 
@@ -251,17 +643,15 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import PlusCircle from "../components/icons/PlusCircle";
-import Star from "../components/icons/Star";
-// import Accountname from "../components/icons/Accountname";
+// import Star from "../components/icons/Star";
 import Avator from "../components/Avator";
 
 
 export default {
   components: {
     PlusCircle,
-    Star,
+    // Star,
     Avator,
-    // Accountname
   },
 
 
@@ -360,25 +750,6 @@ export default {
           this.accoutModal = false;
         },
 
-      // addAccout() {
-      //     const newAccout = firebase
-      //       .database()
-      //       .ref("accout")
-      //       .push();
-
-      //     const key_id = newAccout.key;
-
-      //     newAccout
-      //       .set({
-      //         accout_name: this.accout,
-      //         id: key_id
-      //       })
-      //       .then(() => {
-      //         this.accoutModal = false;
-      //       });
-
-      //     this.accout = ''
-      //   },
       createUser(){
         const user = firebase.auth().currentUser;
 

@@ -1,48 +1,48 @@
 <template>
-  <div class="flex flex-col h-screen">
-    <header class="flex justify-between p-6 border-b-4 border-blue-600 items-center">
-      <h1 class="titlename">ChatChatChat</h1>
+    <div class="home">
+      <header>
+      <p class="titlename">ChatChatChat</p>
         <button class="button">
-        <router-link to="/signin" class="px-4">サインイン</router-link>
+        <router-link to="/signin" class="signin-padding">サインイン</router-link>
       </button>
     </header>
-    <div class="bg-gray-100 flex-auto">
-        <div class="flex justify-center mt-16">
-            <div class="w-2/5 border-4 border-blue-600 rounded-3xl bg-blue-600">
-                <div class="text-center">
-                  <div class="mt-6 flex">
-                    <Entry class="mx-3 text-white"/>
-                    <h2 class="text-4xl font-bold font-serif text-white">ユーザの登録</h2>
+      <div class="screen">
+          <div class="main">
+            <div class="signin">
+                  <div class="signin-header">
+                    <div class="signin-text">
+                    <Entry class="item"/>
+                    <h2 class="signin-header-text">ユーザの登録</h2>
                   </div>
-                    <form @submit.prevent="registerUser" class="bg-white rounded-b-3xl">                       
-                    <p class="my-2 pt-6 flex ml-6">
-                        <span class="font-semibold text-xl mt-2 font-serif">E-mail address</span>
-                    </p>
-                        <div class="mb-2">
+                    <form @submit.prevent="registerUser" class="signin-box">
+                      <div class="signin-mail">
+                        <span class="mail-text">E-mail address</span>
+                      </div>
+                          <div class="password-box">
                             <input
                             type="email"
                             v-model="email"
                             placeholder="メールアドレス"
-                            class="text-2xl w-11/12 p-3 border rounded"
+                            class="text-box"
                             />
                         </div>
-                        <div class="mb-2">
-                          <p class="my-2 pt-4 flex ml-6">
-                            <span class="font-semibold text-xl mt-2 font-serif">Password</span>
-                          </p>
+                          <div class="password-box">
+                          <div class="signin-mail">
+                            <span class="mail-text">password</span>
+                          </div>
                             <input
                                 type="password"
                                 v-model="password"
-                                class="text-2xl w-11/12 p-3 border rounded"
+                                class="text-box"
                                 placeholder="パスワード"
                             />
                         </div>
                         <div v-if="errors.length">
-                            <ul class="my-4">
+                            <ul class="error">
                                 <li
                                 v-for="(error, index) in errors"
                                 :key="index"
-                                class="font-semibold text-red-700"
+                                class="error-text"
                                 >
                                 {{ error }}
                                 </li>
