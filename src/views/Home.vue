@@ -571,9 +571,51 @@ p{
   margin-left: 3px;
   margin-bottom: 0px;
   }
+  .channel-box{
+    width: 80%;
+  height: 55%;
+  z-index: 99;
+  }
+    .channel-box-text{
+    margin-top:0px;
+    margin-bottom: 20px;
+    }
+    .channel-box-title{
+    font-size: 20px;
+    margin-top: 6px;
+    margin-left: 60px;
+    }
+    p{
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 30px;
+    }
+    .channel-box-box{
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  margin-top: 20px;
+  }
+  .channel-box-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 34px;
+  }
   .check-2{
   width: 12px;
   height: 12px;
+  }
+  .name-box{
+  width: 80%;
+  height: 40%;
+  }
+  .name-box-title{
+  font-size: 24px;
+  margin-left: 37px;
+  }
+  .name-box-box{
+  margin-bottom: 30px;
+  width: 100%;
   }
   .channel-margin{
   margin-top: 16px;
